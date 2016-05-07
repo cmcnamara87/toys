@@ -12,9 +12,25 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $clusters = \App\Cluster::paginate(40);
+    return view('toys.index', compact('clusters'));
 });
 
+Route::get('clusters/{id}', function ($id) {
+    $cluster = \App\Cluster::find($id);
+    return view('clusters.show', compact('cluster'));
+});
+
+Route::get('bargain-bin', function () {
+    // items ending in 1hr < $20
+    $items = \App\Item::where('end_time', '<=', \Carbon\Carbon::now()->addHours(1))
+        ->where('end_time', '>', \Carbon\Carbon::now())
+        ->where('currency_value', '<', 20)
+        ->orderBy('end_time', 'asc')
+        ->get();
+
+    return view('toys.bargain-bin', compact('items'));
+});
 /*
 |--------------------------------------------------------------------------
 | Application Routes
