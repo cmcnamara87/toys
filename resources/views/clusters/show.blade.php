@@ -17,20 +17,6 @@
                 /*width: 800px;*/
             }
         }
-        .card {
-            position: relative !important;
-            border: 1px solid #ddd;
-        }
-        .card:before {
-            content: " ";
-            position: absolute;
-            z-index: -1;
-            top: 0px;
-            left: 5px;
-            right: -5px;
-            bottom: 0px;
-            border: 1px solid #ddd;
-        }
     </style>
     <style>
         .pagination {
