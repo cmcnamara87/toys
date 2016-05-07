@@ -185,18 +185,18 @@
         @endif
         <div class="row m-b-3">
         @foreach($row as $cluster)
-            <?php $item = \App\Item::where('cluster_id', $cluster->id)->first() ?>
+            <?php $item = $cluster->items()->first(); ?>
 {{--            @foreach($row as $item)--}}
 
                 <div class="col-sm-3">
                     <div class="card
-                    @if(\App\Item::where('cluster_id', $cluster->id)->count() > 1)
+                    @if($cluster->items()->count() > 1)
                     cluster
                     @endif">
                         <div style="height:400px;background-color: white;position:relative;text-align: center;overflow: hidden;;">
                             <img src="{{ $item->gallery_plus_url }}" alt="Card image cap" style="width: 120%;height:100%;/* max-width:100%; */display:block;margin:auto;position: absolute;top:0%;filter: blur(10px) !important;-webkit-filter: blur(10px);-moz-filter: blur(5px);-o-filter: blur(5px);-ms-filter: blur(5px);filter: blur(5px);-webkit-filter: blur(100);left: -10%;right: -10%;width: 120%;/* bottom: -10px; */opacity: 0.7;">
 
-                            @if(\App\Item::where('cluster_id', $cluster->id)->count() > 1)
+                            @if($cluster->items()->count() > 1)
                             <a href="{{ url('clusters/' . $cluster->id) }}"
                             @else
                             <a href="{{ $item->view_item_url }}"
@@ -211,7 +211,7 @@
 
                         <div class="card-block">
                             <p class="card-title">
-                                @if(\App\Item::where('cluster_id', $cluster->id)->count() > 1)
+                                @if($cluster->items()->count() > 1)
                                     <a href="{{ url('clusters/' . $cluster->id) }}"
                                 @else
                                     <a href="{{ $item->view_item_url }}" target="_blank"
@@ -224,7 +224,7 @@
                                 ${{ $item->currency_value }}
                                 <span class="text-muted">{{ $item->end_time->diffForHumans() }}</span>
                             </p>
-                            @if(\App\Item::where('cluster_id', $cluster->id)->count() > 1)
+                            @if($cluster->items()->count() > 1)
                             <a href="{{ url("clusters/{$cluster->id}") }}">{{ \App\Item::where('cluster_id', $cluster->id)->count() }} similar items.</a>
                             @endif
                         </div>

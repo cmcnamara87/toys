@@ -12,4 +12,10 @@ class Item extends Model
     {
         return array('created_at', 'updated_at', 'start_time', 'end_time');
     }
+
+    public function cluster()
+    {
+        return $this->belongsTo(Cluster::class);
+    }
+
 }

@@ -12,12 +12,17 @@
 */
 
 Route::get('/', function () {
-    $clusters = \App\Cluster::paginate(40);
+    $clusters = \App\Cluster::with(['items' => function ($query) {
+        $query->where('end_time', '>', \Carbon\Carbon::now());
+    }])->paginate(40);
     return view('toys.index', compact('clusters'));
 });
 
 Route::get('clusters/{id}', function ($id) {
-    $cluster = \App\Cluster::find($id);
+    $cluster = \App\Cluster::with(['items' => function ($query) use ($id) {
+        $query->where('end_time', '>', \Carbon\Carbon::now());
+        $query->where('id', $id);
+    }])->first();
     return view('clusters.show', compact('cluster'));
 });
 
