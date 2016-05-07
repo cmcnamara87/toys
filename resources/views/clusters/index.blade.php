@@ -11,6 +11,9 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css"
           integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
 
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css">
+
+    
     <style>
         @media (min-width: 75em) {
             .container {
@@ -149,10 +152,13 @@
         <a class="navbar-brand" href="{{ url('/') }}">ToyFuel</a>
         <ul class="nav navbar-nav">
             <li class="nav-item active">
-                <a class="nav-link" href="{{ url('/') }}">Trending</a>
+                <a class="nav-link" href="{{ url('/') }}">
+                    <i class="fa fa-line-chart"></i> Trending</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{ url('bargain-bin') }}">Bargain Bin</a>
+            <li class="nav-item ">
+                <a class="nav-link" href="{{ url('bargain-bin') }}">
+                    <i class="fa fa-dollar"></i> Bargain Bin
+                </a>
             </li>
         </ul>
         <ul class="nav navbar-nav pull-xs-right">
@@ -197,7 +203,8 @@
         @endif
         <div class="row m-b-3">
         @foreach($row as $cluster)
-            <?php $item = $cluster->items()->first(); ?>
+            <?php $item = $cluster->items->get(0); ?>
+
 {{--            @foreach($row as $item)--}}
 
                 <div class="col-sm-3">
@@ -231,10 +238,15 @@
                                    ><strong>{{ $item->title }}</strong></a>
                             <small class="text-muted">{{ $item->year }}</small></p>
 
-                            <p class="card-text">
+                            <div style="position:absolute;top:5px;right:5px;padding:5px 14px;background-color:#FFF700;border-radius:1px;">
+                                @if($item->currency_id != 'USD')
                                 {{ $item->currency_id }}
+                                @endif
                                 ${{ $item->currency_value }}
-                                <span class="text-muted">{{ $item->end_time->diffForHumans() }}</span>
+                            </div>
+
+                            <p class="card-text">
+                                <span class="text-muted">Ends: {{ $item->endsIn() }}</span>
                             </p>
                             @if($cluster->items()->count() > 1)
                             <a href="{{ url("clusters/{$cluster->id}") }}">{{ \App\Item::where('cluster_id', $cluster->id)->count() }} similar items.</a>
@@ -242,6 +254,7 @@
                         </div>
                     </div>
                 </div>
+
             @endforeach
         </div>
     @endforeach

@@ -11,6 +11,9 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css"
           integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
 
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css">
+
+    
     <style>
         @media (min-width: 75em) {
             .container {
@@ -122,11 +125,14 @@
     <div class="container">
         <a class="navbar-brand" href="{{ url('/') }}">ToyFuel</a>
         <ul class="nav navbar-nav">
-            <li class="nav-item active">
-                <a class="nav-link" href="{{ url('/') }}">Trending</a>
+            <li class="nav-item">
+                <a class="nav-link active" href="{{ url('/') }}">
+                    <i class="fa fa-line-chart"></i> Trending</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{ url('bargain-bin') }}">Bargain Bin</a>
+                <a class="nav-link" href="{{ url('bargain-bin') }}">
+                    <i class="fa fa-dollar"></i> Bargain Bin
+                </a>
             </li>
         </ul>
         <ul class="nav navbar-nav pull-xs-right">
@@ -158,23 +164,29 @@
                         <div style="height:400px;background-color: white;position:relative;text-align: center;overflow: hidden;;">
                             <img src="{{ $item->gallery_plus_url }}" alt="Card image cap" style="width: 120%;height:100%;/* max-width:100%; */display:block;margin:auto;position: absolute;top:0%;filter: blur(10px) !important;-webkit-filter: blur(10px);-moz-filter: blur(5px);-o-filter: blur(5px);-ms-filter: blur(5px);filter: blur(5px);-webkit-filter: blur(100);left: -10%;right: -10%;width: 120%;/* bottom: -10px; */opacity: 0.7;">
 
-                            <a href="{{ $item->view_item_url }}"
-                               target="_blank">
-                                <img src="{{ $item->gallery_plus_url }}"
-                                     alt="Card image cap"
-                                     style="padding:10px; position:absolute;top:20px;bottom:20px;left:0;right:0;max-height:100%;max-width:100%;display:block;margin:auto;">
-                            </a>
+                                <a href="{{ $item->view_item_url }}" target="_blank">
+                                    <img src="{{ $item->gallery_plus_url }}"
+                                         alt="Card image cap"
+                                         style="padding:10px; position:absolute;top:20px;bottom:20px;left:0;right:0;max-height:100%;max-width:100%;display:block;margin:auto;">
+                                </a>
                         </div>
 
 
                         <div class="card-block">
-                            <p class="card-title"><a href="{{ $item->view_item_url }}" target="_blank"><strong>{{ $item->title }}</strong></a>
-                                <small class="text-muted">{{ $item->year }}</small></p>
+                            <p class="card-title">
+
+                                    <a href="{{ $item->view_item_url }}" target="_blank"><strong>{{ $item->title }}</strong></a>
+                                    <small class="text-muted">{{ $item->year }}</small></p>
+
+                            <div style="position:absolute;top:5px;right:5px;padding:5px 14px;background-color:#FFF700;border-radius:1px;">
+                                @if($item->currency_id != 'USD')
+                                    {{ $item->currency_id }}
+                                @endif
+                                ${{ $item->currency_value }}
+                            </div>
 
                             <p class="card-text">
-                                {{ $item->currency_id }}
-                                ${{ $item->currency_value }}
-                                <span class="text-muted">{{ $item->end_time->diffForHumans() }}</span>
+                                <span class="text-muted">Ends: {{ $item->endsIn() }}</span>
                             </p>
                         </div>
                     </div>
