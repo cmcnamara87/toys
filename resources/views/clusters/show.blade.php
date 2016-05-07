@@ -134,7 +134,7 @@
 <body>
 <nav class="navbar navbar-dark navbar-full bg-primary m-b-3">
     <div class="container">
-        <a class="navbar-brand" href="/">ToyFuel</a>
+        <a class="navbar-brand" href="{{ url('/') }}">ToyFuel</a>
         <ul class="nav navbar-nav pull-xs-right">
             {{--<li class="nav-item active">--}}
             {{--<a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>--}}

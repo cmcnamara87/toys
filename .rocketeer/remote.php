@@ -20,7 +20,7 @@ return [
 
     // The root directory where your applications will be deployed
     // This path *needs* to start at the root, ie. start with a /
-    'root_directory' => '/var/www',
+    'root_directory' => '/var/www/html',
 
 
     // The folder the application will be cloned in

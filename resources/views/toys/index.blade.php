@@ -134,7 +134,7 @@
 <body>
 <nav class="navbar navbar-dark navbar-full bg-primary">
     <div class="container">
-        <a class="navbar-brand" href="#">ToyFuel</a>
+        <a class="navbar-brand" href="{{ url('/') }}">ToyFuel</a>
         <ul class="nav navbar-nav pull-xs-right">
             {{--<li class="nav-item active">--}}
                 {{--<a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>--}}
@@ -162,7 +162,7 @@
 
 <div class="alert alert-warning m-b-3" role="alert">
     <div class="container">
-        <a class="alert-link" href="/bargain-bin">Star Trek Bargains!!</a> Check out the <a class="alert-link" href="/bargain-bin">Bargain Bin</a> for cheap Star Trek items ending soon on eBay!</a>.
+        <a class="alert-link" href="{{ url('bargain-bin') }}">Star Trek Bargains!!</a> Check out the <a class="alert-link" href="{{ url('bargain-bin') }}">Bargain Bin</a> for cheap Star Trek items ending soon on eBay!</a>.
     </div>
 </div>
 
@@ -185,7 +185,7 @@
                             <img src="{{ $item->gallery_plus_url }}" alt="Card image cap" style="width: 120%;height:100%;/* max-width:100%; */display:block;margin:auto;position: absolute;top:0%;filter: blur(10px) !important;-webkit-filter: blur(10px);-moz-filter: blur(5px);-o-filter: blur(5px);-ms-filter: blur(5px);filter: blur(5px);-webkit-filter: blur(100);left: -10%;right: -10%;width: 120%;/* bottom: -10px; */opacity: 0.7;">
 
                             @if(\App\Item::where('cluster_id', $cluster->id)->count() > 1)
-                            <a href="clusters/{{ $cluster->id }}"
+                            <a href="{{ url('clusters/' . $cluster->id) }}"
                             @else
                             <a href="{{ $item->view_item_url }}"
                             @endif;
@@ -200,7 +200,7 @@
                         <div class="card-block">
                             <p class="card-title">
                                 @if(\App\Item::where('cluster_id', $cluster->id)->count() > 1)
-                                    <a href="clusters/{{ $cluster->id }}"
+                                    <a href="{{ url('clusters/' . $cluster->id) }}"
                                 @else
                                     <a href="{{ $item->view_item_url }}" target="_blank"
                                        @endif;
@@ -213,7 +213,7 @@
                                 <span class="text-muted">{{ $item->end_time->diffForHumans() }}</span>
                             </p>
                             @if(\App\Item::where('cluster_id', $cluster->id)->count() > 1)
-                            <a href="clusters/{{ $cluster->id }}">{{ \App\Item::where('cluster_id', $cluster->id)->count() }} similar items.</a>
+                            <a href="{{ url("clusters/{$cluster->id}") }}">{{ \App\Item::where('cluster_id', $cluster->id)->count() }} similar items.</a>
                             @endif
                         </div>
                     </div>
