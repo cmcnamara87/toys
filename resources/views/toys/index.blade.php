@@ -25,10 +25,22 @@
             content: " ";
             position: absolute;
             z-index: -1;
-            top: 0px;
+            background-color: #efefef;
+            top: -1px;
             left: 5px;
             right: -5px;
-            bottom: 0px;
+            bottom: -1px;
+            border: 1px solid #ddd;
+        }
+        .cluster:after {
+            content: " ";
+            position: absolute;
+            z-index: -2;
+            background-color: #efefef;
+            top: -1px;
+            left: 10px;
+            right: -10px;
+            bottom: -1px;
             border: 1px solid #ddd;
         }
     </style>
