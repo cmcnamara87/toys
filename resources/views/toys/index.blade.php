@@ -166,7 +166,7 @@
     <h2 class="m-b-1">Trending</h2>
     <p class="text-muted">This is our created list of cool trek items on eBay.</p>
     @foreach($clusters->chunk(4) as $index => $row)
-        @if($index == 1)
+        @if($index == 2)
         <div class="alert alert-warning m-b-3" role="alert">
             <div class="container">
                 <h4><a class="alert-link" href="{{ url('bargain-bin') }}">Star Trek Bargains!!</a></h4>
