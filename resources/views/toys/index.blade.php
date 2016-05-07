@@ -163,8 +163,8 @@
 
 <div class="container">
 
-    <h2 class="m-b-1">Trending</h2>
-    <p class="text-muted">This is our created list of cool trek items on eBay.</p>
+    <h2 class="m-b-0">Trending</h2>
+    <p class="text-muted m-b-2">Check out these cool trek collectables eBay.</p>
     @foreach($clusters->chunk(4) as $index => $row)
         @if($index == 2)
         <div class="alert alert-warning m-b-3" role="alert">
