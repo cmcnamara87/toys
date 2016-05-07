@@ -153,24 +153,28 @@
     </div>
 </nav>
 
-<div class="jumbotron jumbotron-fluid m-b-0 bg-primary">
+<div class="jumbotron jumbotron-fluid m-b-3 bg-primary">
     <div class="container">
         <h1 class="display-3">ToyFuel is Star Trek eBay, Curated.</h1>
         <p class="lead">ToyFuel features a curated list of fun, unique and retro Star Trek collectables from eBay.</p>
     </div>
 </div>
 
-<div class="alert alert-warning m-b-3" role="alert">
-    <div class="container">
-        <a class="alert-link" href="{{ url('bargain-bin') }}">Star Trek Bargains!!</a> Check out the <a class="alert-link" href="{{ url('bargain-bin') }}">Bargain Bin</a> for cheap Star Trek items ending soon on eBay!</a>.
-    </div>
-</div>
 
 <div class="container">
 
-    <h2 class="m-b-1">Curated Items</h2>
+    <h2 class="m-b-1">Trending</h2>
     <p class="text-muted">This is our created list of cool trek items on eBay.</p>
-    @foreach($clusters->chunk(4) as $row)
+    @foreach($clusters->chunk(4) as $index => $row)
+        @if($index == 1)
+        <div class="alert alert-warning m-b-3" role="alert">
+            <div class="container">
+                <h4><a class="alert-link" href="{{ url('bargain-bin') }}">Star Trek Bargains!!</a></h4>
+                <p>Check out the <a class="alert-link" href="{{ url('bargain-bin') }}">Bargain Bin</a> for cheap Star Trek items ending soon on eBay!</a>.</p>
+                <a href="{{ url('bargain-bin') }}" class="btn btn-warning">Show me Bargains!</a>
+            </div>
+        </div>
+        @endif
         <div class="row m-b-3">
         @foreach($row as $cluster)
             <?php $item = \App\Item::where('cluster_id', $cluster->id)->first() ?>
