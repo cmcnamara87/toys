@@ -45,8 +45,14 @@ class LoadItems extends Command
             $this->getForYear($year);
         }
 
-        // create clusters
-        $items = Item::all();
+        // delete all clusters
+        Cluster::truncate();
+
+        // create clusters with all the non-expired items
+        $items = \App\Item::where('end_time', '>', \Carbon\Carbon::now())
+            ->orderBy('end_time', 'asc')
+            ->get();
+
         while (count($items)) {
             $this->info('Creating cluster, ' . count($items) . ' to go');
 
