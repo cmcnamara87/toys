@@ -149,7 +149,7 @@
 <body>
 <nav class="navbar navbar-dark navbar-full bg-primary">
     <div class="container">
-        <a class="navbar-brand" href="{{ url('/') }}">ToyFuel</a>
+        <a class="navbar-brand" href="{{ url('/') }}"><i class="fa fa-fire"></i> ToyFuel</a>
         <ul class="nav navbar-nav">
             <li class="nav-item active">
                 <a class="nav-link" href="{{ url('/') }}">
