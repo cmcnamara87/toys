@@ -193,6 +193,7 @@ class LoadItems extends Command
                 }
                 if(!$item->galleryPlusPictureURL->count()) {
                     // ignore all posts, with low quality pictures
+                    $this->info('No high quality pictures, skipping...');
                     continue;
                 }
                 \App\Item::create([
@@ -212,7 +213,3 @@ class LoadItems extends Command
         }
     }
 }
-
-http://i.ebayimg.com/images/g/HswAAOSwYHxWP8Jz/s-l500.jpg
-
-
