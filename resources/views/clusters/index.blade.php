@@ -209,13 +209,13 @@
 
                 <div class="col-sm-3">
                     <div class="card
-                    @if($cluster->items()->count() > 1)
+                    @if(count($cluster->items) > 1)
                     cluster
                     @endif">
                         <div style="height:400px;background-color: white;position:relative;text-align: center;overflow: hidden;;">
                             <img src="{{ $item->gallery_plus_url }}" alt="Card image cap" style="width: 120%;height:100%;/* max-width:100%; */display:block;margin:auto;position: absolute;top:0%;filter: blur(10px) !important;-webkit-filter: blur(10px);-moz-filter: blur(5px);-o-filter: blur(5px);-ms-filter: blur(5px);filter: blur(5px);-webkit-filter: blur(100);left: -10%;right: -10%;width: 120%;/* bottom: -10px; */opacity: 0.7;">
 
-                            @if($cluster->items()->count() > 1)
+                            @if(count($cluster->items) > 1)
                             <a href="{{ url('clusters/' . $cluster->id) }}"
                             @else
                             <a href="{{ $item->view_item_url }}" target="_blank"
@@ -230,7 +230,7 @@
 
                         <div class="card-block">
                             <p class="card-title">
-                                @if($cluster->items()->count() > 1)
+                                @if(count($cluster->items) > 1)
                                     <a href="{{ url('clusters/' . $cluster->id) }}"
                                 @else
                                     <a href="{{ $item->view_item_url }}" target="_blank"
@@ -248,8 +248,8 @@
                             <p class="card-text">
                                 <span class="text-muted">Ends: {{ $item->endsIn() }}</span>
                             </p>
-                            @if($cluster->items()->count() > 1)
-                            <a href="{{ url("clusters/{$cluster->id}") }}">{{ \App\Item::where('cluster_id', $cluster->id)->count() }} similar items.</a>
+                            @if(count($cluster->items) > 1)
+                            <a href="{{ url("clusters/{$cluster->id}") }}">{{ count($cluster->items) }} similar items.</a>
                             @endif
                         </div>
                     </div>

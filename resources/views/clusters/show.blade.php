@@ -154,8 +154,7 @@
 </nav>
 
 <div class="container">
-    <?php $items = \App\Item::where('cluster_id', $cluster->id)->get(); ?>
-    @foreach($items->chunk(4) as $row)
+    @foreach($cluster->items->chunk(4) as $row)
         <div class="row m-b-3">
             @foreach($row as $item)
 

@@ -44,7 +44,7 @@ class LoadItems extends Command
         $this->info('Loading items...');
         $years = range(1966, 2015);
         foreach($years as $year) {
-//            $this->getForYear($year);
+            $this->getForYear($year);
         }
 
         // delete all clusters
