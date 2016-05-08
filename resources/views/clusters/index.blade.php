@@ -218,9 +218,9 @@
                             @if($cluster->items()->count() > 1)
                             <a href="{{ url('clusters/' . $cluster->id) }}"
                             @else
-                            <a href="{{ $item->view_item_url }}"
+                            <a href="{{ $item->view_item_url }}" target="_blank"
                             @endif;
-                               target="_blank">
+                               >
                                 <img src="{{ $item->gallery_plus_url }}"
                                      alt="Card image cap"
                                      style="padding:10px; position:absolute;top:20px;bottom:20px;left:0;right:0;max-height:100%;max-width:100%;display:block;margin:auto;">

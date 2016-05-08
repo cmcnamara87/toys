@@ -4,7 +4,9 @@ namespace App\Console\Commands;
 
 use App\Cluster;
 use App\Item;
+use Carbon\Carbon;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\DB;
 
 class LoadItems extends Command
 {
@@ -42,14 +44,16 @@ class LoadItems extends Command
         $this->info('Loading items...');
         $years = range(1966, 2015);
         foreach($years as $year) {
-            $this->getForYear($year);
+//            $this->getForYear($year);
         }
 
         // delete all clusters
         Cluster::truncate();
+        DB::table('items')
+            ->update(['cluster_id' => null]);
 
         // create clusters with all the non-expired items
-        $items = \App\Item::where('end_time', '>', \Carbon\Carbon::now())
+        $items = Item::where('end_time', '>', Carbon::now())
             ->orderBy('end_time', 'asc')
             ->get();
 
@@ -77,8 +81,11 @@ class LoadItems extends Command
     private function distance($title1, $title2) {
         $title1 = $this->stripWords($title1);
         $title2 = $this->stripWords($title2);
-        $distance = levenshtein($title1, $title2) / strlen($title2);
-        return $distance < 0.6;
+        $percentOfCharactersDifferent = levenshtein($title1, $title2) / max(strlen($title1), strlen($title2));
+        if($percentOfCharactersDifferent < 0.5) {
+            return true;
+        }
+        return false;
     }
 
     private function stripWords($title) {

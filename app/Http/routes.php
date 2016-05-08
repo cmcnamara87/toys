@@ -11,21 +11,8 @@
 |
 */
 
-Route::get('/', function () {
-    $clusters = \App\Cluster::whereHas('items', function ($query) {
-        $query->where('end_time', '>', \Carbon\Carbon::now());
-    })->with(['items' => function ($query) {
-        $query->where('end_time', '>', \Carbon\Carbon::now());
-    }])->paginate(40);
-    return view('clusters.index', compact('clusters'));
-});
-
-Route::get('clusters/{id}', function ($id) {
-    $cluster = \App\Cluster::where('id', $id)->with(['items' => function ($query) use ($id) {
-        $query->where('end_time', '>', \Carbon\Carbon::now());
-    }])->first();
-    return view('clusters.show', compact('cluster'));
-});
+Route::get('/', 'ClustersController@index');
+Route::resource('clusters', 'ClustersController');
 
 Route::get('bargain-bin', function () {
     // items ending in 1hr < $20
