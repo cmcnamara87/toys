@@ -20,6 +20,12 @@
                 /*width: 800px;*/
             }
         }
+        body {
+            font-size: 14px;
+        }
+        a {
+            color: inherit;
+        }
         .cluster {
             position: relative !important;
             border: 1px solid #ddd;
@@ -192,15 +198,9 @@
     <h2 class="m-b-0">Trending</h2>
     <p class="text-muted m-b-2">Check out these cool trek collectables eBay.</p>
     @foreach($clusters->chunk(4) as $index => $row)
-        @if($index == 2)
-        <div class="alert alert-warning m-b-3" role="alert">
-            <div class="container">
-                <h4><a class="alert-link" href="{{ url('bargain-bin') }}">Star Trek Bargains!!</a></h4>
-                <p>Check out the <a class="alert-link" href="{{ url('bargain-bin') }}">Bargain Bin</a> for cheap Star Trek items ending soon on eBay!</a>.</p>
-                <a href="{{ url('bargain-bin') }}" class="btn btn-warning">Show me Bargains!</a>
-            </div>
-        </div>
-        @endif
+        {{--@if($index == 2)--}}
+        {{----}}
+        {{--@endif--}}
         <div class="row m-b-3">
         @foreach($row as $cluster)
             <?php $item = $cluster->items->get(0); ?>
@@ -227,7 +227,7 @@
 
 
                         <div class="card-block">
-                            <p class="card-title">
+                            <p class="card-title m-b-0">
                                 @if(count($cluster->items) > 1)
                                     <a href="{{ url('clusters/' . $cluster->id) }}"
                                 @else
@@ -243,19 +243,36 @@
                                 ${{ $item->currency_value }}
                             </div>
 
-                            <p class="card-text">
-                                <span class="text-muted">Ends: {{ $item->endsIn() }}</span>
+                            <p class="card-text m-b-0">
+                                <small class="text-muted">Ends: {{ $item->endsIn() }}</small>
                             </p>
-                            @if(count($cluster->items) > 1)
-                            <a href="{{ url("clusters/{$cluster->id}") }}">{{ count($cluster->items) }} similar items.</a>
-                            @endif
                         </div>
+                        @if(count($cluster->items) > 1)
+                        <div class="card-footer">
+                            <a href="{{ url("clusters/{$cluster->id}") }}">
+                                <small class="text-uppercase" style="font-size:10px;">{{ count($cluster->items) }} similar items</small>.
+                            </a>
+                        </div>
+                        @endif
                     </div>
                 </div>
 
             @endforeach
         </div>
     @endforeach
+
+    <div class="card card-inverse card-primary text-xs-center m-b-3">
+        <div class="card-block">
+            <h4><a style="color: white" href="{{ url('bargain-bin') }}">Star Trek Bargains!!</a></h4>
+            <p style="color:white;">Check out the <a href="{{ url('bargain-bin') }}">Bargain Bin</a> for cheap Star Trek items ending soon on eBay!</a>.</p>
+            <a href="{{ url('bargain-bin') }}" class="btn btn-secondary">Show me Star Trek Bargains!</a>
+            {{--<blockquote class="card-blockquote">--}}
+            {{--<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>--}}
+            {{--<footer>Someone famous in <cite title="Source Title">Source Title</cite></footer>--}}
+            {{--</blockquote>--}}
+        </div>
+    </div>
+    
 
     {!! $clusters->render() !!}
 </div>
