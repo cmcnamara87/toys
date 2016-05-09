@@ -235,7 +235,7 @@
                                 @else
                                     <a href="{{ $item->view_item_url }}" target="_blank"
                                        @endif;
-                                   ><strong>{{ $item->title }}</strong></a>
+                                   ><strong>{{ $item->getPrettyTitle() }}</strong></a>
                             <small class="text-muted">{{ $item->year }}</small></p>
 
                             <div style="position:absolute;top:5px;right:5px;padding:5px 14px;background-color:#FFF700;border-radius:1px;">

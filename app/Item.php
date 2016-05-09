@@ -13,6 +13,10 @@ class Item extends Model
         return array('created_at', 'updated_at', 'start_time', 'end_time');
     }
 
+    public function getPrettyTitle() {
+        return ucwords(str_replace('star trek', '', strtolower($this->title)));
+    }
+
     public function endsIn() {
         $ts = $this->end_time;
         if(!ctype_digit($ts))
