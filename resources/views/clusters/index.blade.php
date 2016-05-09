@@ -212,9 +212,7 @@
                     @if(count($cluster->items) > 1)
                     cluster
                     @endif">
-                        <div style="height:400px;background-color: white;position:relative;text-align: center;overflow: hidden;;">
-                            <img src="{{ $item->gallery_plus_url }}" alt="Card image cap" style="width: 120%;height:100%;/* max-width:100%; */display:block;margin:auto;position: absolute;top:0%;filter: blur(10px) !important;-webkit-filter: blur(10px);-moz-filter: blur(5px);-o-filter: blur(5px);-ms-filter: blur(5px);filter: blur(5px);-webkit-filter: blur(100);left: -10%;right: -10%;width: 120%;/* bottom: -10px; */opacity: 0.7;">
-
+                        <div style="height:340px;background-color:#F3F3F3;position:relative;text-align: center;overflow: hidden;;">
                             @if(count($cluster->items) > 1)
                             <a href="{{ url('clusters/' . $cluster->id) }}"
                             @else
@@ -223,7 +221,7 @@
                                >
                                 <img src="{{ $item->gallery_plus_url }}"
                                      alt="Card image cap"
-                                     style="padding:10px; position:absolute;top:20px;bottom:20px;left:0;right:0;max-height:100%;max-width:100%;display:block;margin:auto;">
+                                     style="position:absolute;top:20px;bottom:20px;left:0%;right:0;height:100%;display:block;margin:auto;">
                             </a>
                         </div>
 
