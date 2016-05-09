@@ -134,7 +134,7 @@ class LoadItems extends Command
 //        ]);
         $request->itemFilter[] = new \DTS\eBaySDK\Finding\Types\ItemFilter([
             'name' => 'EndTimeTo',
-            'value' => [\Carbon\Carbon::today()->endOfDay()->format('Y-m-d\TH:i:s\Z')]
+            'value' => [\Carbon\Carbon::now()->addHours(24)->format('Y-m-d\TH:i:s\Z')]
         ]);
 
         /**
