@@ -207,7 +207,7 @@
 
 {{--            @foreach($row as $item)--}}
 
-                <div class="col-sm-3">
+                <div class="col-sm-6 col-lg-3">
                     <div class="card
                     @if(count($cluster->items) > 1)
                     cluster
@@ -272,7 +272,7 @@
             {{--</blockquote>--}}
         </div>
     </div>
-    
+
 
     {!! $clusters->render() !!}
 </div>
