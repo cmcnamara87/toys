@@ -213,6 +213,7 @@
         @endif
         <div class="row m-b-3">
         @foreach($row as $cardNumber => $cluster)
+
             <?php $item = $cluster->items->get(0); ?>
 
 
@@ -255,51 +256,16 @@
                             <p class="card-text m-b-1">
                                 <small class="text-muted">Ends: {{ $item->endsIn() }}</small>
                             </p>
+                            @if(count($item->getFacts()))
                             <p style="font-size:10px;text-transform: uppercase;"><strong>Fun Facts</strong></p>
+                            @endif
                             <ul class="text-muted list-unstyled m-b-0">
-                                @if(strpos(strtolower($item->title), "mego") !== false)
+
+                                @foreach($item->getFacts() as $fact)
                                 <li style="margin-bottom: 0.5rem;">
-                                    In 1971 Mego created the very first 8" action figure.
+                                    {{ $fact }}
                                 </li>
-                                <li style="margin-bottom: 0.5rem;">
-                                    In 1975, Mego began to Star Trek action figures and toys.
-                                </li>
-                                <li style="margin-bottom: 0.5rem;">
-                                    Fourteen figures in three "waves" were released by Mego between 1975 and 1978.
-                                </li>
-                                @if(strpos(strtolower($item->title), "20") !== false)
-                                <li style="margin-bottom: 0.5rem;">
-                                    In 2007, EMCE Toys released reproductions of many of Mego's 8-inch Star Trek figures.
-                                </li>
-                                @endif
-                                @endif
-                                @if(strpos(strtolower($item->title), "skybox") !== false)
-                                <li  style="margin-bottom: 0.5rem;">
-                                    Skybox produced Star Trek trading cards from 1991 to 2000.
-                                </li>
-                                @endif
-                                @if(strpos(strtolower($item->title), "hallmark") !== false)
-                                <li style="margin-bottom: 0.5rem;">
-                                    Hallmark has produced licensed "Keepsake" Christmas ornaments since 1991.
-                                </li>
-                                <li style="margin-bottom: 0.5rem;">Hallmark Ornaments can be see in two Voyager episodes.</li>
-                                @endif
-                                @if(strpos(strtolower($item->title), "playmates") !== false)
-                                <li style="margin-bottom: 0.5rem;">
-                                    Playmates Toys produced a lot of Star Trek items, starting in 1991.
-                                </li>
-                                <li style="margin-bottom: 0.5rem;">
-                                    Playmates action figures have appeared in two Big Bang Theory episodes.
-                                </li>
-                                @endif
-                                @if(strpos(strtolower($item->title), "plate") !== false)
-                                <li style="margin-bottom: 0.5rem;">The Hamilton Collection started producing Star Trek items in 1973.</li>
-                                <li style="margin-bottom: 0.5rem;">The porcelain plates were produced in limited editions.</li>
-                                <li style="margin-bottom: 0.5rem;">Some plates contain 24K gold and platinum detailing.</li>
-                                @endif
-                                @if(2016 - $item->year > 10)
-                                <li class="m-b-1">It was originally released in {{ $item->year }}, making it {{ 2016 - $item->year }} years old.</li>
-                                @endif
+                                @endforeach
                             </ul>
                         </div>
                         @if(count($cluster->items) > 1)

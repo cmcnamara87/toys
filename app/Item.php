@@ -61,6 +61,57 @@ class Item extends Model
             return date('F Y', $ts);
         }
     }
+    
+    public function getFacts() {
+        $facts = [];
+        if(strpos(strtolower($this->title), "mego") !== false) {
+            $facts[] = "In 1971, Mego created the very first 8\" action figure.";
+            $facts[] = "In 1975, Mego started selling Star Trek action figures and toys.";
+            $facts[] = "Fourteen figures in three \"waves\" were released by Mego between 1975 and 1978.";
+            $facts[] = "The Romulan and Andorian from Wave Three considered to be the rarest of all.";
+            if(strpos(strtolower($this->title), "20") !== false) {
+                $facts[] = "In 2007, EMCE Toys released reproductions of many of Mego's 8-inch Star Trek figures.";
+            }
+            if(strpos(strtolower($this->title), "klingon") !== false) {
+                $facts[] = "The Klingon, with belt, phaser and communicator, is part of Wave One.";
+            }
+        }
+        if(strpos(strtolower($this->title), "skybox") !== false) {
+            $facts[] = "Skybox produced Star Trek trading cards from 1991 to 2000.";
+        }
+        if(strpos(strtolower($this->title), "hallmark") !== false) {
+            $facts[] = "Hallmark has produced licensed \"Keepsake\" Christmas ornaments since 1991.";
+            $facts[] = "Hallmark Ornaments can be see in two Voyager episodes.";
+            $facts[] = "Hallmark Ornaments depict Star Trek characters, ships, props, artwork, and scenes.";
+            $facts[] = "Hallmark has frequently used recorded music and clips of Star Trek actors.";
+        }
+        if(strpos(strtolower($this->title), "playmates") !== false) {
+            $facts[] = "Playmates Toys produced a lot of Star Trek items, starting in 1991.";
+            $facts[] = "Playmates action figures have appeared in two Big Bang Theory episodes.";
+        }
+        if(strpos(strtolower($this->title), "hamilton") !== false) {
+            $facts[] = "The Hamilton Collection started producing Star Trek items in 1973.";
+            $facts[] = "Some Hamilton plates contain 24K gold and platinum detailing.";
+        }
+        if(strpos(strtolower($this->title), "plate") !== false) {
+            $facts[] = "The porcelain plates were produced in limited editions.";
+        }
+        if(strpos(strtolower($this->title), "micro") !== false) {
+            $facts[] = "Star Trek Micro Machines were produced by Galoob from 1993 to 1997.";
+            $facts[] = "52 unique molds were created for the Micro Machines Star Trek line.";
+        }
+        if(strpos(strtolower($this->title), "applause") !== false) {
+            $facts[] = "Applause produced a large number of Star Trek collectibles during the 1990s.";
+            $facts[] = "Applause produced many figures, statues, dioramas, and other Star Trek collectibles.";
+        }
+
+        if(2016 - $this->year > 10) {
+            $age = 2016 - $this->year;
+            $facts[] = "It was originally released in {$this->year}, making it {$age} years old.";
+        }
+        shuffle($facts);
+        return array_slice($facts, 0, min(3, count($facts)));
+    }
 
     public function cluster()
     {

@@ -17,7 +17,8 @@ class ClustersController extends Controller
             $query->where('end_time', '>', Carbon::now());
         })->with(['items' => function ($query) {
             $query->where('end_time', '>', Carbon::now());
-        }])->paginate(40);
+            $query->orderBy('end_time', 'asc');
+        }])->paginate(39);
         return view('clusters.index', compact('clusters'));
     }
 
