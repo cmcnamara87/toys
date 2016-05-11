@@ -197,17 +197,26 @@
 
     <h2 class="m-b-0">Trending</h2>
     <p class="text-muted m-b-2">Check out these cool trek collectables eBay.</p>
-    @foreach($clusters->chunk(4) as $index => $row)
-        {{--@if($index == 2)--}}
-        {{----}}
-        {{--@endif--}}
+    @foreach($clusters->chunk(3) as $index => $row)
+        @if($index == 2)
+            <div class="card text-xs-center m-b-3">
+                <div class="card-block">
+                    <h4><a href="{{ url('bargain-bin') }}">Star Trek Bargains!!</a></h4>
+                    <p>Check out the <a href="{{ url('bargain-bin') }}">Bargain Bin</a> for cheap Star Trek items ending soon on eBay!</a>.</p>
+                    <a href="{{ url('bargain-bin') }}" class="btn btn-primary">Show me Star Trek Bargains!</a>
+                    {{--<blockquote class="card-blockquote">--}}
+                    {{--<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>--}}
+                    {{--<footer>Someone famous in <cite title="Source Title">Source Title</cite></footer>--}}
+                    {{--</blockquote>--}}
+                </div>
+            </div>
+        @endif
         <div class="row m-b-3">
-        @foreach($row as $cluster)
+        @foreach($row as $cardNumber => $cluster)
             <?php $item = $cluster->items->get(0); ?>
 
-{{--            @foreach($row as $item)--}}
 
-                <div class="col-sm-6 col-lg-3">
+                <div class="col-sm-6 col-lg-4">
                     <div class="card
                     @if(count($cluster->items) > 1)
                     cluster
@@ -243,9 +252,55 @@
                                 ${{ $item->currency_value }}
                             </div>
 
-                            <p class="card-text m-b-0">
+                            <p class="card-text m-b-1">
                                 <small class="text-muted">Ends: {{ $item->endsIn() }}</small>
                             </p>
+                            <p style="font-size:10px;text-transform: uppercase;"><strong>Fun Facts</strong></p>
+                            <ul class="text-muted list-unstyled m-b-0">
+                                @if(strpos(strtolower($item->title), "mego") !== false)
+                                <li style="margin-bottom: 0.5rem;">
+                                    In 1971 Mego created the very first 8" action figure.
+                                </li>
+                                <li style="margin-bottom: 0.5rem;">
+                                    In 1975, Mego began to Star Trek action figures and toys.
+                                </li>
+                                <li style="margin-bottom: 0.5rem;">
+                                    Fourteen figures in three "waves" were released by Mego between 1975 and 1978.
+                                </li>
+                                @if(strpos(strtolower($item->title), "20") !== false)
+                                <li style="margin-bottom: 0.5rem;">
+                                    In 2007, EMCE Toys released reproductions of many of Mego's 8-inch Star Trek figures.
+                                </li>
+                                @endif
+                                @endif
+                                @if(strpos(strtolower($item->title), "skybox") !== false)
+                                <li  style="margin-bottom: 0.5rem;">
+                                    Skybox produced Star Trek trading cards from 1991 to 2000.
+                                </li>
+                                @endif
+                                @if(strpos(strtolower($item->title), "hallmark") !== false)
+                                <li style="margin-bottom: 0.5rem;">
+                                    Hallmark has produced licensed "Keepsake" Christmas ornaments since 1991.
+                                </li>
+                                <li style="margin-bottom: 0.5rem;">Hallmark Ornaments can be see in two Voyager episodes.</li>
+                                @endif
+                                @if(strpos(strtolower($item->title), "playmates") !== false)
+                                <li style="margin-bottom: 0.5rem;">
+                                    Playmates Toys produced a lot of Star Trek items, starting in 1991.
+                                </li>
+                                <li style="margin-bottom: 0.5rem;">
+                                    Playmates action figures have appeared in two Big Bang Theory episodes.
+                                </li>
+                                @endif
+                                @if(strpos(strtolower($item->title), "plate") !== false)
+                                <li style="margin-bottom: 0.5rem;">The Hamilton Collection started producing Star Trek items in 1973.</li>
+                                <li style="margin-bottom: 0.5rem;">The porcelain plates were produced in limited editions.</li>
+                                <li style="margin-bottom: 0.5rem;">Some plates contain 24K gold and platinum detailing.</li>
+                                @endif
+                                @if(2016 - $item->year > 10)
+                                <li class="m-b-1">It was originally released in {{ $item->year }}, making it {{ 2016 - $item->year }} years old.</li>
+                                @endif
+                            </ul>
                         </div>
                         @if(count($cluster->items) > 1)
                         <div class="card-footer">
@@ -260,19 +315,6 @@
             @endforeach
         </div>
     @endforeach
-
-    <div class="card card-inverse card-primary text-xs-center m-b-3">
-        <div class="card-block">
-            <h4><a style="color: white" href="{{ url('bargain-bin') }}">Star Trek Bargains!!</a></h4>
-            <p style="color:white;">Check out the <a href="{{ url('bargain-bin') }}">Bargain Bin</a> for cheap Star Trek items ending soon on eBay!</a>.</p>
-            <a href="{{ url('bargain-bin') }}" class="btn btn-secondary">Show me Star Trek Bargains!</a>
-            {{--<blockquote class="card-blockquote">--}}
-            {{--<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>--}}
-            {{--<footer>Someone famous in <cite title="Source Title">Source Title</cite></footer>--}}
-            {{--</blockquote>--}}
-        </div>
-    </div>
-
 
     {!! $clusters->render() !!}
 </div>
