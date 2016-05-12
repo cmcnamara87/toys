@@ -14,7 +14,16 @@ class Item extends Model
     }
 
     public function getPrettyTitle() {
-        return ucwords(str_replace('star trek', '', strtolower($this->title)));
+        $words = [
+//            'star trek',
+            'vintage',
+            'collectible',
+        ];
+        $title = strtolower($this->title);
+        foreach($words as $word) {
+            $title = str_replace($word, '', $title);
+        }
+        return ucwords($title);
     }
 
     public function endsIn() {
@@ -103,6 +112,12 @@ class Item extends Model
         if(strpos(strtolower($this->title), "applause") !== false) {
             $facts[] = "Applause produced a large number of Star Trek collectibles during the 1990s.";
             $facts[] = "Applause produced many figures, statues, dioramas, and other Star Trek collectibles.";
+        }
+        if(strpos(strtolower($this->title), "star trek ii ") !== false) {
+            $facts[] = "Star Trek II: The Wrath of Khan was released 4 June 1982.";
+        }
+        if(strpos(strtolower($this->title), "star trek iii") !== false) {
+            $facts[] = "Star Trek III: The Search for Spock was released 1 June 1984.";
         }
 
         if(2016 - $this->year > 10) {
