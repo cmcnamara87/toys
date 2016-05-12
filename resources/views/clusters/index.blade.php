@@ -231,7 +231,7 @@
                                >
                                 <img src="{{ $item->gallery_plus_url }}"
                                      alt="Card image cap"
-                                     style="position:absolute;top:20px;bottom:20px;left:0%;right:0;height:100%;display:block;margin:auto;">
+                                     style="position:absolute;max-width:100%;max-height:100%;top:20px;bottom:20px;left:0%;right:0;display:block;margin:auto;">
                             </a>
                         </div>
 
