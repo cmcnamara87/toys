@@ -135,7 +135,7 @@
             </li>
             <li class="nav-item ">
                 <a class="nav-link" href="http://blog.toyfuel.com">
-                    <i class="fa fa-dollar"></i> Blog
+                    <i class="fa fa-newspaper-o"></i> Blog
                 </a>
             </li>
         </ul>
