@@ -133,6 +133,11 @@
                         <i class="fa fa-dollar"></i> Bargain Bin
                 </a>
             </li>
+            <li class="nav-item ">
+                <a class="nav-link" href="http://blog.toyfuel.com">
+                    <i class="fa fa-dollar"></i> Blog
+                </a>
+            </li>
         </ul>
         <ul class="nav navbar-nav pull-xs-right">
             {{--<li class="nav-item active">--}}
